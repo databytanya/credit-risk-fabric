@@ -110,29 +110,31 @@ Key fields used:
 > `Files/raw/lending_club/` before running the notebooks.
 
 ---
-
 ## Project structure
 
-```
 credit-risk-fabric/
 │
 ├── README.md
 ├── .gitignore
 │
-├── docs/
-│   ├── architecture.md          ← Layer by layer technical design
-│   └── data-dictionary.md       ← Source and derived field definitions
+├── 01_bronze_register.Notebook/   ← PySpark notebook — Bronze layer
+│   └── notebook-content.py        reads CSV, writes bronze_loans_raw
 │
-├── notebooks/
-│   ├── 01_bronze_register.ipynb ← Read CSV, write Bronze Delta table
-│   ├── 02_silver_transform.ipynb← Clean, type fix, risk score
-│   └── 03_gold_aggregates.ipynb ← Build Gold summary tables
+├── 02_silver_transform.Notebook/  ← PySpark notebook — Silver layer
+│   └── notebook-content.py        cleans data, adds risk scoring
 │
-└── semantic-model/
-    └── dax-measures.md          ← All DAX measure definitions
-```
+├── 03_gold_aggregates.Notebook/   ← PySpark notebook — Gold layer
+│   └── notebook-content.py        builds 3 aggregated Gold tables
+│
+├── lh_credit_risk.Lakehouse/      ← Lakehouse metadata
+│
+├── sm_credit_risk.SemanticModel/  ← Semantic model with DAX measures
+│
+└── docs/
+├── architecture.md            ← Layer by layer technical design
+├── data-dictionary.md         ← Field definitions
+└── dashboard-preview.png      ← Power BI report screenshot
 
----
 
 ## How to run this project
 
