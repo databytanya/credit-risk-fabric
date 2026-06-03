@@ -263,9 +263,8 @@ Built by **[Your Name]** — Freelance Microsoft Fabric and Power BI consultant.
 Available for data engineering, analytics engineering, and reporting
 projects on Microsoft Fabric, Azure Synapse, and Power BI.
 
-[your-website.com](https://your-website.com) ·
-[LinkedIn](https://linkedin.com/in/yourprofile) ·
-[GitHub](https://github.com/yourusername)
+[LinkedIn](https://www.linkedin.com/in/tanyagulati96/) ·
+[GitHub](https://github.com/databytanya)
 
 ---
 
