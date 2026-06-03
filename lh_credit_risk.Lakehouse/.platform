@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "lh_credit_risk"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a08e0244-83a0-9a31-4e8b-2ddaa137bce7"
+  }
+}

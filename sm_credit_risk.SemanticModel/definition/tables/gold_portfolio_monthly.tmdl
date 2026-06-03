@@ -1,0 +1,71 @@
+table gold_portfolio_monthly
+	lineageTag: 932254a1-5a9d-4ccf-8774-d5b6b708a945
+	sourceLineageTag: [dbo].[gold_portfolio_monthly]
+
+	column issue_d
+		dataType: string
+		lineageTag: 65b5af4f-906c-456d-b27c-75213b6b9b6a
+		sourceLineageTag: issue_d
+		summarizeBy: none
+		sourceColumn: issue_d
+
+		annotation SummarizationSetBy = Automatic
+
+	column grade
+		dataType: string
+		lineageTag: 394fd90b-bebb-4425-b66e-cceb8a2ada5f
+		sourceLineageTag: grade
+		summarizeBy: none
+		sourceColumn: grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_count
+		dataType: int64
+		formatString: 0
+		lineageTag: e666b87c-e97b-4ef3-827f-67cbd5798aab
+		sourceLineageTag: loan_count
+		summarizeBy: sum
+		sourceColumn: loan_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_funded
+		dataType: double
+		lineageTag: 911370ae-6924-4e21-ba07-f81eab6f223e
+		sourceLineageTag: total_funded
+		summarizeBy: sum
+		sourceColumn: total_funded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column avg_int_rate
+		dataType: double
+		lineageTag: d77e7d53-8212-4e53-8ebd-048c5d0f6f4a
+		sourceLineageTag: avg_int_rate
+		summarizeBy: sum
+		sourceColumn: avg_int_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column default_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 26913681-214d-4525-ab45-5901f64d9554
+		sourceLineageTag: default_count
+		summarizeBy: sum
+		sourceColumn: default_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_portfolio_monthly = entity
+		mode: directLake
+		source
+			entityName: gold_portfolio_monthly
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_credit_risk'
+

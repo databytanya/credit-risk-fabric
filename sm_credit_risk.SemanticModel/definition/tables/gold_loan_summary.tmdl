@@ -1,0 +1,265 @@
+table gold_loan_summary
+	lineageTag: bc47a45d-5a76-4e9f-b6e4-a663cddb0796
+	sourceLineageTag: [dbo].[gold_loan_summary]
+
+	measure 'Default Rate' =
+			
+			DIVIDE(SUM(gold_loan_summary[is_default]), COUNTROWS(gold_loan_summary))
+		lineageTag: a301edbb-6a6b-45c7-b4d4-565b805af3d8
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Interest Yield' =
+			
+			CALCULATE(
+			    AVERAGE(gold_loan_summary[int_rate]),
+			    gold_loan_summary[loan_status_std] <> "Defaulted"
+			)
+		lineageTag: 79e7ae3a-e26b-495a-b5ad-b1dace93bd39
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Recovery Rate' =
+			
+			DIVIDE(
+			    SUM(gold_loan_summary[recoveries]),
+			    SUMX(FILTER(gold_loan_summary, [is_default] = 1), [funded_amnt])
+			)
+		lineageTag: da45493d-67b2-40c4-926e-e2927b7224a6
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Funded' =
+			
+			SUM(gold_loan_summary[funded_amnt])
+		lineageTag: ffae51f7-00ae-4ae7-aee7-ca63dddb4b4d
+
+		changedProperty = Name
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_amnt
+		dataType: double
+		lineageTag: d8d9ae52-7848-4a47-b4a3-fd2963b7ddb8
+		sourceLineageTag: loan_amnt
+		summarizeBy: sum
+		sourceColumn: loan_amnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column funded_amnt
+		dataType: double
+		lineageTag: 18412274-1aa1-4fbf-a619-0d82695f9609
+		sourceLineageTag: funded_amnt
+		summarizeBy: sum
+		sourceColumn: funded_amnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column int_rate
+		dataType: double
+		lineageTag: d1c2c324-ad78-465a-a0f1-11977bb2b045
+		sourceLineageTag: int_rate
+		summarizeBy: sum
+		sourceColumn: int_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column grade
+		dataType: string
+		lineageTag: 8afb836a-6361-4df7-82b3-59eecbe54b8c
+		sourceLineageTag: grade
+		summarizeBy: none
+		sourceColumn: grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_grade
+		dataType: string
+		lineageTag: eb806eab-0831-4702-adbe-351dc134114f
+		sourceLineageTag: sub_grade
+		summarizeBy: none
+		sourceColumn: sub_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column emp_length
+		dataType: string
+		lineageTag: 4110c723-542b-448c-bf54-2ac195a2eda6
+		sourceLineageTag: emp_length
+		summarizeBy: none
+		sourceColumn: emp_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column annual_inc
+		dataType: double
+		lineageTag: 024b8ba9-141a-44a6-8ffa-3abdb27e5c5a
+		sourceLineageTag: annual_inc
+		summarizeBy: sum
+		sourceColumn: annual_inc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_status
+		dataType: string
+		lineageTag: 93e8f2b6-58c6-42a6-8b21-db34378dc29f
+		sourceLineageTag: loan_status
+		summarizeBy: none
+		sourceColumn: loan_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column purpose
+		dataType: string
+		lineageTag: cfe7b9c5-369f-474b-b5f9-da2811292486
+		sourceLineageTag: purpose
+		summarizeBy: none
+		sourceColumn: purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column dti
+		dataType: double
+		lineageTag: 45a5c7ef-8fd8-40f7-a210-580c6fd0143d
+		sourceLineageTag: dti
+		summarizeBy: sum
+		sourceColumn: dti
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fico_range_low
+		dataType: int64
+		formatString: 0
+		lineageTag: 2058d8d2-64e6-40b4-956c-2abe368fbe4f
+		sourceLineageTag: fico_range_low
+		summarizeBy: sum
+		sourceColumn: fico_range_low
+
+		annotation SummarizationSetBy = Automatic
+
+	column fico_range_high
+		dataType: int64
+		formatString: 0
+		lineageTag: 52cc75e8-3bbf-479f-a6a5-795a42d57c29
+		sourceLineageTag: fico_range_high
+		summarizeBy: sum
+		sourceColumn: fico_range_high
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_d
+		dataType: string
+		lineageTag: d2d123ca-7a31-4152-942e-ff2a0e58d611
+		sourceLineageTag: issue_d
+		summarizeBy: none
+		sourceColumn: issue_d
+
+		annotation SummarizationSetBy = Automatic
+
+	column addr_state
+		dataType: string
+		lineageTag: ea387c09-7fce-42f3-855e-a6f08493da36
+		sourceLineageTag: addr_state
+		summarizeBy: none
+		sourceColumn: addr_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column installment
+		dataType: double
+		lineageTag: 41b892ec-0dfb-4ec9-8296-6f40a98508c5
+		sourceLineageTag: installment
+		summarizeBy: sum
+		sourceColumn: installment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_pymnt
+		dataType: double
+		lineageTag: 7fc04d56-7bbe-4551-a131-ec628b6f8efe
+		sourceLineageTag: total_pymnt
+		summarizeBy: sum
+		sourceColumn: total_pymnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column recoveries
+		dataType: double
+		lineageTag: 626407e2-913f-4f20-a1ee-5d50c0981e27
+		sourceLineageTag: recoveries
+		summarizeBy: sum
+		sourceColumn: recoveries
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_status_std
+		dataType: string
+		lineageTag: 3a0e8510-1707-4ef9-b6c2-dc3804e20ad6
+		sourceLineageTag: loan_status_std
+		summarizeBy: none
+		sourceColumn: loan_status_std
+
+		annotation SummarizationSetBy = Automatic
+
+	column fico_mid
+		dataType: double
+		lineageTag: e6d983dc-ae74-460c-8505-193fa5c8314c
+		sourceLineageTag: fico_mid
+		summarizeBy: sum
+		sourceColumn: fico_mid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column risk_band
+		dataType: string
+		lineageTag: 06dd70fc-098e-4f80-9892-e5ac12afe6f3
+		sourceLineageTag: risk_band
+		summarizeBy: none
+		sourceColumn: risk_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_default
+		dataType: int64
+		formatString: 0
+		lineageTag: 22e71a40-a52f-4a22-9e58-5bd853a56bc8
+		sourceLineageTag: is_default
+		summarizeBy: sum
+		sourceColumn: is_default
+
+		annotation SummarizationSetBy = Automatic
+
+	partition gold_loan_summary = entity
+		mode: directLake
+		source
+			entityName: gold_loan_summary
+			schemaName: dbo
+			expressionSource: 'DirectLake - lh_credit_risk'
+

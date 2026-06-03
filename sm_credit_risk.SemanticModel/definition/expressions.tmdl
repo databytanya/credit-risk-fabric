@@ -1,0 +1,11 @@
+expression 'DirectLake - lh_credit_risk' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/d99cd2ea-4b94-4e1c-8d34-4a8d427881ac/a137bce7-2dda-4e8b-9a31-83a0a08e0244", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 649647f5-7e4a-4888-b2f2-4c6619be7518
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[silver_loans_enriched]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[bronze_loans_raw]"}},"objectType":"Table"}]
+
